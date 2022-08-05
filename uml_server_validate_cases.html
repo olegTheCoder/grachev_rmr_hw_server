@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <title>UML sequence diagram. Server cases.</title>
+  </head>
+  <body>
+    <div class="mermaid">
+      sequenceDiagram
+      participant A as Auth endpoint
+      participant DB as Database
+      participant I as Index endpoint
+            A->>+DB: send login/password
+            alt is wrong
+            DB-->>A: no email matches
+            DB-->>A: no phone matches
+            DB-->>-A: no password matches
+            else is correct
+            DB->>+A: validate data
+            A-->>-I: create session & access/redirect to content
+            end
+      </div>
+  </body>
+</html>

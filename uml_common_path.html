@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <title>UML sequence diagram. Common path.</title>
+  </head>
+  <body>
+    <div class="mermaid">
+      sequenceDiagram
+        actor U as User
+        participant C as Cat img webpage (Index)
+        participant L as Login webpage (Auth)
+        participant I as Index endpoint
+        participant A as Auth endpoint
+        participant DB as Database
+            U->>+C: try to get Cat img on Index page
+            C->>+I: send req to backend
+            I-->>-C: no session & no permission
+            C-->>-L: redirect on login
+            L->>+A: send login/password to backend
+            A->>+DB: send login/password to DB
+            DB->>DB: search & match data
+            DB-->>-A: access to create session & return cookies
+            A-->>-C: redirect on index page & show Cat img
+      </div>
+  </body>
+</html>

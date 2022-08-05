@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <title>UML sequence diagram. Client cases.</title>
+  </head>
+  <body>
+    <div class="mermaid">
+      sequenceDiagram
+        actor U as User
+        participant L as Login webpage (Auth)
+        participant C as Cat img webpage (Index)
+            U->>+L: enter login/password
+            alt is wrong
+            L-->>U: not correct email (RegEx)
+            L-->>U: not correct phone (RegEx)
+            L-->>-U: not correct password (too short or invalid symbols)
+            else is correct
+            L->>+C: redirect on Index webpage
+            C-->>-U: show content
+            end
+      </div>
+  </body>
+</html>
