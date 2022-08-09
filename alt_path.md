@@ -32,11 +32,11 @@
           C-->>U: Auth error message
           else is correct on DB
           DB-->>S: access to make session
-          end
           S-->>C: response cookie & permission
           C-->>C: redirect on content page
           C->>S: request
           S->>S: check cookie
           S-->>C: response
           C-->> U: get content
+          end
 ```
