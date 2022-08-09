@@ -5,27 +5,38 @@
         participant C as Client
         participant S as Server
         participant DB as Database
-          U->>C: enter User data
+          U->>C: enter login/password
           alt is wrong on Client
-          C-xC: not correct email (RegExp)
-          C-xC: not correct phone (RegExp)
-          C-xC: not correct password (too short or invalid symbols)
+          C-xC: validate email
+          C-->>U: email error message
+          C-xC: validate phone
+          C-->>U: phone error message
+          C-xC: validate password
+          C-->>U: Password error message
           else is correct on Client
-          C->>S: send auth data to validate
+          C->>C: validate User form
+          C->>S: send auth data
           end
           alt is wrong on Server
-          S-xS: 500 Internal Server Error & another errors
+          S-xS: Server errors
+          S-->>C: Server error message
+          C-->>U: Server error message
           else is correct on Server
+          S->>S: validate User data
           S->>DB: check User details
           end
           alt is wrong on DB
-          DB-xDB: no email matches
-          DB-xDB: no phone matches
-          DB-xDB: no password matches
+          DB-xDB: no match data
+          DB-->>S: error response
+          S-->>C: Auth error 
+          C-->>U: Auth error message
           else is correct on DB
-          DB->>DB: validate User
           DB-->>S: access to make session
           end
           S-->>C: response cookie & permission
-          C-->>U: get the content
+          C-->>C: redirect on content page
+          C->>S: request
+          S->>S: check cookie
+          S-->>C: response
+          C-->> U: get content
 ```
