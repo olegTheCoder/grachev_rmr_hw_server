@@ -1,0 +1,18 @@
+.linksBlock {
+  width: 100px;
+  margin-right: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ .link {
+  color: black;
+  transition:0.6s;
+ }
+
+.link:hover {
+  color: red;
+  cursor: pointer;
+  transition:0.3s;
+}
