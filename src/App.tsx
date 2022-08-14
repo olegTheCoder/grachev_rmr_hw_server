@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./features/Header/Header";
 import Footer from "./features/Footer/Footer";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<ContentScreen />} />
+        <Route path="/" element={<ContentScreen />} /> :
         <Route path="/login" element={<LoginScreen />} />
       </Routes>
       <Footer />

@@ -41,6 +41,10 @@ html::-webkit-scrollbar {
   display: none;
 }
 
+input {
+  padding: 8px;
+}
+
 input:focus{
   outline: rgb(52, 52, 52);
   border: 1px solid rgb(52, 52, 52);

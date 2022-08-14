@@ -1,55 +1,45 @@
-import React from 'react'
+type LoginDataType = {
+  email: string;
+  phone: string;
+  password: string;
+};
 
-function requestService() {
+export async function sendLoginData(data: LoginDataType): Promise<any> {
+  const request = await fetch("/api/v1/login", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-
-
-
-
-  // fetch("http://51.250.65.73/api/v1/login", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     "id": "1",
-  //     "name": "Маша",
-  //     "email": "masha@gmail.com",
-  //     "password": "lolkekkkk",
-  //     "phone": "+79853453322"
-  // }),
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => console.log("response", data));
-
-
-
-
-
-    // fetch("http://51.250.65.73/api/v1/login", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => console.log("response", data));
-
-
-
-
-
-
-
-
-
-
-
-
-
-  return (
-    <div>requestService</div>
-  )
+  const response = await request.json();
+  return response;
 }
 
-export default requestService
+export async function getContent(): Promise<any> {
+  const request = await fetch("/api/v1/kitty", {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const response = await request.json();
+  return response;
+}
+
+export async function getUser(): Promise<any> {
+  const request = await fetch("/api/v1/profile", {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const response = await request.json();
+  return response;
+}

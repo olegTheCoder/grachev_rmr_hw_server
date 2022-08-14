@@ -1,5 +1,9 @@
-import "./style.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { sendLoginData } from "../../infrastructure/requestService";
+import { useAuthContext } from "../../infrastructure/context";
+import Button from "../../ui-library/Button/Button";
+import "./style.css";
 
 function LoginForm() {
   const [user, setUser] = useState({
@@ -7,21 +11,34 @@ function LoginForm() {
     phone: "",
     password: "",
   });
+  const { setIsAuth } = useAuthContext();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const auth = await sendLoginData(user);
 
     setUser({
       email: "",
       phone: "",
       password: "",
     });
+
+    console.log(auth, "auth");
+
+    if (auth.status === "OK!") {
+      setIsAuth(true);
+      navigate("/");
+    }
   };
 
   return (
     <form className="wrapper flex_col" onSubmit={handleSubmit} name="login">
-      <label>Login</label>
+      <label className="loginLabel">Login</label>
       <input
+        className="inputField"
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         value={user.email}
         type="email"
@@ -31,6 +48,7 @@ function LoginForm() {
         autoFocus
       />
       <input
+        className="inputField"
         onChange={(e) => setUser({ ...user, phone: e.target.value })}
         value={user.phone}
         type="tel"
@@ -39,6 +57,7 @@ function LoginForm() {
         required
       />
       <input
+        className="inputField"
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         value={user.password}
         type="password"
@@ -46,7 +65,7 @@ function LoginForm() {
         placeholder="Password"
         required
       />
-      <button type="submit">SEND</button>
+      <Button type={"submit"}>SEND</Button>
     </form>
   );
 }
