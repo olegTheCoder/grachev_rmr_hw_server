@@ -43,3 +43,17 @@ export async function getUser(): Promise<any> {
   const response = await request.json();
   return response;
 }
+
+export async function getLogoutServer(): Promise<any> {
+  const request = await fetch("/api/v1/logout", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({})
+  });
+
+  const response = await request.json();
+  return response;
+}

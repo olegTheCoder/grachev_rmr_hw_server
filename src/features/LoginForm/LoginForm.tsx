@@ -26,8 +26,6 @@ function LoginForm() {
       password: "",
     });
 
-    console.log(auth, "auth");
-
     if (auth.status === "OK!") {
       setIsAuth(true);
       navigate("/");

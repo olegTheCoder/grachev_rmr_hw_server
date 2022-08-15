@@ -3,7 +3,7 @@ import "./style.css";
 
 function LoginScreen() {
   return (
-    <div className="loginLayout wrapper flex_col">
+    <div className="pageLayout wrapper flex_col">
       <LoginForm />
     </div>
   );

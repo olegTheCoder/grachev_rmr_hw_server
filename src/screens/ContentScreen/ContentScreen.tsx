@@ -9,14 +9,14 @@ function ContentScreen() {
   const { isAuth } = useAuthContext();
 
   useEffect(() => {
-    getContent().then((res) => setKittyImg(res.data.src));
+    if (isAuth) getContent().then((res) => setKittyImg(res.data.src));
   }, []);
 
   return (
     <>
       {!isAuth && <Navigate to="/login" replace={true} />}
-      <div className="wrapper flex_col">
-        <div>Ok, here's your cat!</div>
+      <div className="pageLayout wrapper flex_col">
+        <h1 className="title">Ok, here's your cat!</h1>
         {kittyImg && <img src={kittyImg} alt="kitty" className="kitty" />}
       </div>
     </>

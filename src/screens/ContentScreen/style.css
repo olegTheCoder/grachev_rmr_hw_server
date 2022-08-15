@@ -2,3 +2,8 @@
   width: 400px;
   height: auto;
 }
+
+.title {
+  font-size: 32px;
+  margin: 16px 0px;
+}
