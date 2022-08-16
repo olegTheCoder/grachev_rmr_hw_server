@@ -33,7 +33,7 @@ function LoginForm() {
   };
 
   return (
-    <form className="wrapper flex_col" onSubmit={handleSubmit} name="login">
+    <form className="form wrapper flex_col" onSubmit={handleSubmit} name="login">
       <label className="loginLabel">Login</label>
       <input
         className="inputField"
@@ -51,6 +51,7 @@ function LoginForm() {
         value={user.phone}
         type="tel"
         name="tel"
+        pattern="(\+7|\+976)[\d]{10,}"
         placeholder="Phone"
         required
       />
@@ -60,6 +61,7 @@ function LoginForm() {
         value={user.password}
         type="password"
         name="password"
+        pattern="[\w]{4,}"
         placeholder="Password"
         required
       />
