@@ -4,14 +4,14 @@ import Footer from "./features/Footer/Footer";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import ContentScreen from "./screens/ContentScreen/ContentScreen";
 import "./App.css";
-import "../src/ui-library/styles/variables.css"
+import "../src/ui-library/styles/variables.css";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<ContentScreen />} /> :
+        <Route path="/" element={<ContentScreen />} />
         <Route path="/login" element={<LoginScreen />} />
       </Routes>
       <Footer />

@@ -33,7 +33,11 @@ function LoginForm() {
   };
 
   return (
-    <form className="form wrapper flex_col" onSubmit={handleSubmit} name="login">
+    <form
+      className="form wrapper flex_col"
+      onSubmit={handleSubmit}
+      name="login"
+    >
       <label className="loginLabel">Login</label>
       <input
         className="inputField"

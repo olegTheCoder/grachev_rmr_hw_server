@@ -13,4 +13,9 @@
     width: 90%;
     height: auto;
   }
+
+  .title {
+    font-size: 16px;
+    margin: 8px 0px;
+  }
 }
