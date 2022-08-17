@@ -1,8 +1,8 @@
 .footer {
-  color: white;
+  color: var(--white-color);
   bottom: 0;
   height: 50px;
   width: 100%;
-  background-color: rgb(35, 34, 35);
+  background-color: var(--black-color);
   position: fixed;
 }

@@ -2,8 +2,8 @@
   width: 160px;
   margin: 8px;
   height: 40px;
-  color: black;
-  background-color: rgb(141, 226, 115);
+  color: var(--black-color);
+  background-color: var(--green-color);
   cursor: pointer;
   border-radius: 8px;
   transition: 0.6s;
@@ -12,6 +12,12 @@
 }
 
 .button:hover {
-  background-color: rgb(94, 146, 107);
+  background-color: var(--darkgreen-color);
   transition: 0.3s;
+}
+
+@media screen and (max-width: 450px) {
+  .button {
+   width: 100%;
+  }
 }

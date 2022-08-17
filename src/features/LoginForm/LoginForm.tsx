@@ -51,7 +51,7 @@ function LoginForm() {
         value={user.phone}
         type="tel"
         name="tel"
-        pattern="(\+7|\+976)[\d]{10,}"
+        pattern="(\+7|\+976)[\d]{10,15}"
         placeholder="Phone"
         required
       />

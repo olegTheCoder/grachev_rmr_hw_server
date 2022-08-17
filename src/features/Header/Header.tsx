@@ -1,6 +1,6 @@
 import Links from "./Links/Links";
 import "./style.css";
-import rmrLogo from "../../ui-library/img/rmr_logo.png";
+import rmrLogo from "../../assets/icons/rmr_logo.png";
 import UserInfo from "./UserInfo/UserInfo";
 import { useAuthContext } from "../../infrastructure/context";
 
