@@ -2,8 +2,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendLoginData } from "../../infrastructure/requestService";
 import { useAuthContext } from "../../infrastructure/context";
+import { Formik } from "formik";
+import * as yup from "yup";
 import Button from "../../ui-library/Button/Button";
 import "./style.css";
+
+interface MyFormValues {
+  email: string;
+  phone: string;
+  password: string;
+}
 
 function LoginForm() {
   const [user, setUser] = useState({
@@ -11,14 +19,34 @@ function LoginForm() {
     phone: "",
     password: "",
   });
+
   const { setIsAuth } = useAuthContext();
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const validationSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Введите в правильном формате. Например example@example.com")
+      .required("Обязательное поле"),
+    phone: yup
+      .string()
+      .required("Обязательное поле")
+      .matches(
+        /(\+7|\+976)[\d]{10,15}/,
+        "Телефон должен начинаться с +7 или +976 без пробелов, скобок и дефиса"
+      ),
+    password: yup
+      .string()
+      .required("Обязательное поле")
+      .matches(
+        /[\w]{4,}/,
+        "Может содержать только буквы (допускается любой регистр) и цифры, минимум - 4 символа"
+      ),
+  });
 
-    const auth = await sendLoginData(user);
+  const submitToServer = async (values: MyFormValues) => {
+    const auth = await sendLoginData(values);
 
     setUser({
       email: "",
@@ -33,44 +61,77 @@ function LoginForm() {
   };
 
   return (
-    <form
-      className="form wrapper flex_col"
-      onSubmit={handleSubmit}
-      name="login"
-    >
-      <label className="loginLabel">Login</label>
-      <input
-        className="inputField"
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        value={user.email}
-        type="email"
-        name="email"
-        placeholder="Email"
-        required
-        autoFocus
-      />
-      <input
-        className="inputField"
-        onChange={(e) => setUser({ ...user, phone: e.target.value })}
-        value={user.phone}
-        type="tel"
-        name="tel"
-        pattern="(\+7|\+976)[\d]{10,15}"
-        placeholder="Phone"
-        required
-      />
-      <input
-        className="inputField"
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        value={user.password}
-        type="password"
-        name="password"
-        pattern="[\w]{4,}"
-        placeholder="Password"
-        required
-      />
-      <Button type={"submit"}>SEND</Button>
-    </form>
+    <div className="form wrapper flex_col">
+      <Formik
+        initialValues={{
+          email: "",
+          phone: "",
+          password: "",
+        }}
+        validateOnBlur
+        onSubmit={submitToServer}
+        validationSchema={validationSchema}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          isValid,
+          handleSubmit,
+          dirty,
+        }) => (
+          <>
+            <input
+              className="inputField"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+              type="email"
+              name="email"
+              placeholder="Email"
+              autoFocus
+            />
+            {touched.email && errors.email && (
+              <p className="error">{errors.email}</p>
+            )}
+            <input
+              className="inputField"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.phone}
+              type="tel"
+              name="phone"
+              placeholder="Phone"
+            />
+            {touched.phone && errors.phone && (
+              <p className="error">{errors.phone}</p>
+            )}
+            <input
+              className="inputField"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+            {touched.password && errors.password && (
+              <p className="error">{errors.password}</p>
+            )}
+            <Button
+              handleSubmit={handleSubmit}
+              type={"submit"}
+              isValid={isValid}
+              dirty={dirty}
+            >
+              SEND
+            </Button>
+          </>
+        )}
+      </Formik>
+    </div>
   );
 }
 

@@ -1,10 +1,10 @@
-import LoginForm from "../../features/LoginForm/LoginForm";
+import LoginFormFormik from "../../features/LoginForm/LoginForm";
 import "./style.css";
 
 function LoginScreen() {
   return (
     <div className="pageLayout wrapper flex_col">
-      <LoginForm />
+      <LoginFormFormik />
     </div>
   );
 }

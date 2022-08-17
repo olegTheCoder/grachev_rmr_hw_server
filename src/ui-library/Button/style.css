@@ -16,8 +16,17 @@
   transition: 0.3s;
 }
 
+.button:disabled {
+  opacity: 0.6;
+}
+.button:disabled:hover {
+  opacity: 0.6;
+  background-color: var(--green-color);
+  transition: 0;
+}
+
 @media screen and (max-width: 450px) {
   .button {
-   width: 100%;
+    width: 100%;
   }
 }

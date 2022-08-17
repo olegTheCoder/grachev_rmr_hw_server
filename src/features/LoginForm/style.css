@@ -24,6 +24,11 @@
   margin-bottom: 20%;
 }
 
+.error {
+  color: var(--red-color);
+  font-size: 12px;
+}
+
 @media screen and (max-height: 550px) {
   .form {
     margin-bottom:0;
