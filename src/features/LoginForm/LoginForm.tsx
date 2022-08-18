@@ -7,6 +7,8 @@ import * as yup from "yup";
 import Button from "../../ui-library/Button/Button";
 import "./style.css";
 
+import { ReactComponent as EyeSvg } from "../../assets/icons/eye.svg";
+
 interface MyFormValues {
   email: string;
   phone: string;
@@ -20,6 +22,8 @@ function LoginForm() {
     password: "",
   });
 
+  const [typeInput, setTypeInput] = useState("password");
+
   const { setIsAuth } = useAuthContext();
 
   const navigate = useNavigate();
@@ -27,23 +31,27 @@ function LoginForm() {
   const validationSchema = yup.object().shape({
     email: yup
       .string()
-      .email("Введите в правильном формате. Например example@example.com")
-      .required("Обязательное поле"),
+      .email("Enter in the correct format example@example.com")
+      .required("Required field"),
     phone: yup
       .string()
-      .required("Обязательное поле")
+      .required("Required field")
       .matches(
         /(\+7|\+976)[\d]{10,15}/,
-        "Телефон должен начинаться с +7 или +976 без пробелов, скобок и дефиса"
+        "The phone number must start with +7 or +976 without spaces, brackets or hyphens"
       ),
     password: yup
       .string()
-      .required("Обязательное поле")
+      .required("Required field")
       .matches(
         /[\w]{4,}/,
-        "Может содержать только буквы (допускается любой регистр) и цифры, минимум - 4 символа"
+        "Can only contain letters (any case allowed) and numbers, minimum 4 characters"
       ),
   });
+
+  const showPassword = () => {
+    typeInput === "password" ? setTypeInput("text") : setTypeInput("password");
+  };
 
   const submitToServer = async (values: MyFormValues) => {
     const auth = await sendLoginData(values);
@@ -62,6 +70,7 @@ function LoginForm() {
 
   return (
     <div className="form wrapper flex_col">
+      <label className="loginLabel">Login</label>
       <Formik
         initialValues={{
           email: "",
@@ -108,18 +117,22 @@ function LoginForm() {
             {touched.phone && errors.phone && (
               <p className="error">{errors.phone}</p>
             )}
+            <div className="eyeBlock">
+              <EyeSvg className="eye_icon" onClick={showPassword} />
+            </div>
             <input
               className="inputField"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
-              type="password"
+              type={typeInput}
               name="password"
               placeholder="Password"
             />
             {touched.password && errors.password && (
               <p className="error">{errors.password}</p>
             )}
+            
             <Button
               handleSubmit={handleSubmit}
               type={"submit"}

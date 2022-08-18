@@ -4,7 +4,7 @@ import Footer from "./features/Footer/Footer";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import ContentScreen from "./screens/ContentScreen/ContentScreen";
 import "./App.css";
-import "../src/ui-library/styles/variables.css";
+import "../src/ui-library/styles/colors.css";
 
 function App() {
   return (

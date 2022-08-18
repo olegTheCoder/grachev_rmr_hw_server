@@ -1,8 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Source+Code+Pro&display=swap");
-
 @font-face {
   font-family: Molot;
   src: url("../src/assets/fonts/molot/Molot.otf");
+}
+
+@font-face {
+  font-family: BitterPro_Regular;
+  src: url("../src/assets/fonts/BitterPro//BitterPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: BitterPro_Bold;
+  src: url("../src/assets/fonts/BitterPro//BitterPro-Bold.ttf");
 }
 
 .App {
