@@ -4,7 +4,7 @@ import { sendLoginData } from "../../infrastructure/requestService";
 import { useAuthContext } from "../../infrastructure/context";
 import { Formik } from "formik";
 import * as yup from "yup";
-import Button from "../../ui-library/Button/Button";
+import Button from "./Button/Button";
 import "./style.css";
 
 import { ReactComponent as EyeSvg } from "../../assets/icons/eye.svg";
@@ -23,6 +23,7 @@ function LoginForm() {
   });
 
   const [typeInput, setTypeInput] = useState("password");
+  const [serverError, setServerError] = useState("");
 
   const { setIsAuth } = useAuthContext();
 
@@ -63,8 +64,11 @@ function LoginForm() {
     });
 
     if (auth.status === "OK!") {
+      setServerError("");
       setIsAuth(true);
       navigate("/");
+    } else {
+      setServerError("There is no such login and password in the system");
     }
   };
 
@@ -132,7 +136,6 @@ function LoginForm() {
             {touched.password && errors.password && (
               <p className="error">{errors.password}</p>
             )}
-            
             <Button
               handleSubmit={handleSubmit}
               type={"submit"}
@@ -141,6 +144,7 @@ function LoginForm() {
             >
               SEND
             </Button>
+            {serverError && <p className="error">{serverError}</p>}
           </>
         )}
       </Formik>
