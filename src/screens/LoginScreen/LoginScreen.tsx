@@ -1,5 +1,5 @@
-import LoginFormFormik from "../../features/LoginForm/LoginForm";
-import "./style.css";
+import LoginFormFormik from '../../features/LoginForm/LoginForm';
+import './style.css';
 
 function LoginScreen() {
   return (

@@ -1,15 +1,13 @@
-import { getLogoutServer } from "../../../../infrastructure/requestService";
-import { useAuthContext } from "../../../../infrastructure/context";
+import { getLogoutServer } from '../../../../infrastructure/requestService';
+import { useAuthContext } from '../../../../infrastructure/context';
 
 function Logout() {
   const { setIsAuth } = useAuthContext();
 
-  const handleLogout = async (
-    e: React.MouseEvent<HTMLSpanElement, MouseEvent>
-  ) => {
+  const handleLogout = async (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     const res = await getLogoutServer();
 
-    if (res.status === "OK!") {
+    if (res.status === 'OK!') {
       setIsAuth(false);
     }
   };
