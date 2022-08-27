@@ -1,8 +1,8 @@
-import Links from "./Links/Links";
-import "./style.css";
-import rmrLogo from "../../assets/icons/rmr_logo.png";
-import UserInfo from "./UserInfo/UserInfo";
-import { useAuthContext } from "../../infrastructure/context";
+import Links from './Links/Links';
+import './style.css';
+import rmrLogo from '../../assets/icons/rmr_logo.png';
+import UserInfo from './UserInfo/UserInfo';
+import { useAuthContext } from '../../infrastructure/context';
 
 function Header() {
   const { isAuth } = useAuthContext();
