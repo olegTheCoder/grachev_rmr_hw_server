@@ -1,16 +1,16 @@
-type LoginDataType = {
+interface LoginDataType {
   email: string;
   phone: string;
   password: string;
-};
+}
 
 export async function sendLoginData(data: LoginDataType): Promise<any> {
   try {
-    const request = await fetch("/api/v1/login", {
-      method: "POST",
-      credentials: "include",
+    const request = await fetch('/api/v1/login', {
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
@@ -24,11 +24,11 @@ export async function sendLoginData(data: LoginDataType): Promise<any> {
 
 export async function getContent(): Promise<any> {
   try {
-    const request = await fetch("/api/v1/kitty", {
-      method: "GET",
-      credentials: "include",
+    const request = await fetch('/api/v1/kitty', {
+      method: 'GET',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -41,11 +41,11 @@ export async function getContent(): Promise<any> {
 
 export async function getUser(): Promise<any> {
   try {
-    const request = await fetch("/api/v1/profile", {
-      method: "GET",
-      credentials: "include",
+    const request = await fetch('/api/v1/profile', {
+      method: 'GET',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -58,11 +58,11 @@ export async function getUser(): Promise<any> {
 
 export async function getLogoutServer(): Promise<any> {
   try {
-    const request = await fetch("/api/v1/logout", {
-      method: "POST",
-      credentials: "include",
+    const request = await fetch('/api/v1/logout', {
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({}),
     });

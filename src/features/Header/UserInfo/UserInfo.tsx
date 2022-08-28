@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { getUser } from "../../../infrastructure/requestService";
-import Logout from "./Logout/Logout";
-import "./style.css";
+import { useEffect, useState } from 'react';
+import { getUser } from '../../../infrastructure/requestService';
+import Logout from './Logout/Logout';
+import './style.css';
 
 function UserInfo() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   useEffect(() => {
     getUser().then((res) => setName(res.data.name));
